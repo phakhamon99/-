@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ภคมน พรมดี - Web Developer & Creative Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e5edff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#1e1b4b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a5b4fc 0%, #c084fc 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(217, 70, 239, 0.3));
+            padding: 1px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-300">
+                    ภ
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white block leading-tight">ภคมน พรมดี</span>
+                    <span class="text-xs text-indigo-400 block font-light">Phakhamon Phromdee</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="text-gray-300 hover:text-indigo-400 transition-colors">หน้าแรก</a>
+                <a href="#projects" class="text-gray-300 hover:text-indigo-400 transition-colors">ผลงานเว็บไซต์</a>
+                <a href="#about" class="text-gray-300 hover:text-indigo-400 transition-colors">เกี่ยวกับ</a>
+                <a href="#contact" class="text-gray-300 hover:text-indigo-400 transition-colors">ติดต่อ</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="https://github.com/phakhamon99" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-xl border border-slate-700 transition-all text-sm font-medium">
+                    <i class="fa-brands fa-github text-lg"></i>
+                    <span>GitHub Profile</span>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white text-2xl p-2 focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Navigation Overlay -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-6 py-6 space-y-4">
+            <a href="#home" class="block text-gray-200 hover:text-indigo-400 font-medium py-1">หน้าแรก</a>
+            <a href="#projects" class="block text-gray-200 hover:text-indigo-400 font-medium py-1">ผลงานเว็บไซต์</a>
+            <a href="#about" class="block text-gray-200 hover:text-indigo-400 font-medium py-1">เกี่ยวกับ</a>
+            <a href="#contact" class="block text-gray-200 hover:text-indigo-400 font-medium py-1">ติดต่อ</a>
+            <div class="pt-4 border-t border-slate-800 flex flex-col gap-3">
+                <a href="https://github.com/phakhamon99" target="_blank" class="flex items-center justify-center gap-2 bg-slate-800 text-white py-2.5 rounded-xl text-sm font-medium">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub Profile</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-purple-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                
+                <!-- Left Intro Column -->
+                <div class="flex-1 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>ยินดีต้อนรับสู่พอร์ตโฟลิโอสะสมผลงาน</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
+                        สวัสดีครับ/ค่ะ ฉันคือ <br class="hidden sm:block"/>
+                        <span class="gradient-text">ภคมน พรมดี</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        ผู้พัฒนาเว็บไซต์ที่มุ่งมั่นสร้างสรรค์ผลงาน Interactive Web Applications, เว็บแอปพลิเคชันสำหรับกิจกรรม, เกมบนเว็บ และเครื่องมือคำนวณออนไลน์ที่ใช้งานง่ายและดีไซน์ทันสมัย
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-medium shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <span>สำรวจผลงานทั้งหมด</span>
+                            <i class="fa-solid fa-arrow-down text-sm"></i>
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-gray-200 border border-slate-700/80 font-medium transition-all flex items-center gap-2">
+                            <i class="fa-regular fa-paper-plane text-sm"></i>
+                            <span>ติดต่อเรา</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats Banner -->
+                    <div class="grid grid-cols-3 gap-4 mt-12 pt-8 border-t border-slate-800/80 max-w-md mx-auto lg:mx-0">
+                        <div>
+                            <div class="text-2xl font-bold text-white">5+</div>
+                            <div class="text-xs text-slate-400 mt-1">ผลงานเว็บไซต์</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-indigo-400">100%</div>
+                            <div class="text-xs text-slate-400 mt-1">ดูและเล่นได้จริง</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-purple-400">Responsive</div>
+                            <div class="text-xs text-slate-400 mt-1">รองรับทุกหน้าจอ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual Banner Card -->
+                <div class="w-full max-w-md lg:max-w-lg">
+                    <div class="gradient-border shadow-2xl">
+                        <div class="glass-card rounded-[15px] p-6 space-y-6">
+                            <div class="flex items-center justify-between border-b border-slate-700/60 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">phakhamon99.github.io</span>
+                            </div>
+
+                            <!-- Showcase Mini List inside Card -->
+                            <div class="space-y-3">
+                                <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/40 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-sm">
+                                            <i class="fa-solid fa-gamepad"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-semibold text-white">Mini Web Game</div>
+                                            <div class="text-[10px] text-slate-400">Interactive Game App</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium">Live</span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/40 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-sm">
+                                            <i class="fa-solid fa-calculator"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-semibold text-white">BMI Calculator</div>
+                                            <div class="text-[10px] text-slate-400">Health Measurement Tool</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium">Live</span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/40 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center text-sm">
+                                            <i class="fa-solid fa-school"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs font-semibold text-white">Open House Project</div>
+                                            <div class="text-[10px] text-slate-400">Event Showcase Site</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium">Live</span>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 text-center">
+                                <span class="text-xs text-slate-400 flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-sparkles text-amber-400"></i>
+                                    คลิกดูตัวอย่างแบบตอบโต้ได้ในหมวดผลงานด้านล่าง
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">Portfolio Showcase</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-white tracking-tight">ผลงานเว็บไซต์ของ ภคมน พรมดี</p>
+                <p class="text-slate-400 mt-3 text-sm sm:text-base">
+                    รวบรวมลิงก์ผลงานที่พัฒนาขึ้นมาโดยตรง สามารถทดลองกดดูตัวอย่างหน้าเว็บ (Live Preview) หรือกดเปิดในแท็บใหม่เพื่อใช้งานจริงได้ทันที
+                </p>
+            </div>
+
+            <!-- Filter Category Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+                <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-medium bg-indigo-600 text-white transition-all">
+                    ทั้งหมด (5)
+                </button>
+                <button onclick="filterProjects('web')" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">
+                    เว็บไซต์ทั่วไป
+                </button>
+                <button onclick="filterProjects('tool')" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">
+                    เครื่องมือคำนวณ
+                </button>
+                <button onclick="filterProjects('game')" class="filter-btn px-4 py-2 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">
+                    มินิเกม
+                </button>
+            </div>
+
+            <!-- Projects Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+
+                <!-- Project Card 1: Openhouse -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden hover:border-indigo-500/50 transition-all duration-300 flex flex-col group" data-category="web">
+                    <div class="relative h-48 bg-gradient-to-br from-indigo-900 via-slate-800 to-purple-900 overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all"></div>
+                        <i class="fa-solid fa-door-open text-6xl text-indigo-400/70 group-hover:scale-110 transition-transform duration-300"></i>
+                        <span class="absolute top-3 left-3 bg-indigo-500/80 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md">
+                            Open House
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                                Open House Website
+                            </h3>
+                            <p class="text-slate-400 text-sm mt-2 line-clamp-3 leading-relaxed">
+                                เว็บไซต์ประชาสัมพันธ์และแนะนำงาน Open House นำเสนอรายละเอียดกิจกรรม นิทรรศการ และข้อมูลต้อนรับผู้เข้าร่วมงานอย่างมีระเบียบสวยงาม
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-indigo-300 border border-slate-700">HTML5</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-indigo-300 border border-slate-700">CSS3</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-indigo-300 border border-slate-700">GitHub Pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="openPreviewModal('Open House Website', 'https://phakhamon99.github.io/openhouse/')" 
+                                        class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium py-2.5 px-3 rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <span>ลองกดดูหน้าเว็บ</span>
+                                </button>
+                                <a href="https://phakhamon99.github.io/openhouse/" target="_blank" rel="noopener noreferrer" 
+                                   class="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition-colors" title="เปิดในแท็บใหม่">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: My Favorite Websites -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-300 flex flex-col group" data-category="web">
+                    <div class="relative h-48 bg-gradient-to-br from-purple-900 via-slate-800 to-pink-900 overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all"></div>
+                        <i class="fa-solid fa-bookmark text-6xl text-purple-400/70 group-hover:scale-110 transition-transform duration-300"></i>
+                        <span class="absolute top-3 left-3 bg-purple-500/80 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md">
+                            Favorite Sites
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                                My Favorite Websites
+                            </h3>
+                            <p class="text-slate-400 text-sm mt-2 line-clamp-3 leading-relaxed">
+                                เว็บไซต์รวบรวมแหล่งข้อมูล เว็บไซต์โปรด และลิงก์ที่เป็นประโยชน์ จัดหมวดหมู่ให้เข้าถึงได้ง่ายและสะดวกสบายในการค้นหา
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-purple-300 border border-slate-700">HTML5</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-purple-300 border border-slate-700">Web Links</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-purple-300 border border-slate-700">GitHub Pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="openPreviewModal('My Favorite Websites', 'https://phakhamon99.github.io/my-favorite-websites/')" 
+                                        class="flex-1 bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium py-2.5 px-3 rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <span>ลองกดดูหน้าเว็บ</span>
+                                </button>
+                                <a href="https://phakhamon99.github.io/my-favorite-websites/" target="_blank" rel="noopener noreferrer" 
+                                   class="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition-colors" title="เปิดในแท็บใหม่">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Our Team -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden hover:border-pink-500/50 transition-all duration-300 flex flex-col group" data-category="web">
+                    <div class="relative h-48 bg-gradient-to-br from-pink-900 via-slate-800 to-rose-900 overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all"></div>
+                        <i class="fa-solid fa-users text-6xl text-pink-400/70 group-hover:scale-110 transition-transform duration-300"></i>
+                        <span class="absolute top-3 left-3 bg-pink-500/80 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md">
+                            Team Profile
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-pink-400 transition-colors">
+                                Our Team Website
+                            </h3>
+                            <p class="text-slate-400 text-sm mt-2 line-clamp-3 leading-relaxed">
+                                เว็บไซต์แนะนำสมาชิกในกลุ่มและทีมงาน แสดงข้อมูลประวัติ บทบาทหน้าที่ และช่องทางการติดต่อของแต่ละบุคคลอย่างชัดเจน
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-pink-300 border border-slate-700">Team Profile</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-pink-300 border border-slate-700">UI Layout</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-pink-300 border border-slate-700">GitHub Pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="openPreviewModal('Our Team Website', 'https://phakhamon99.github.io/our-team/')" 
+                                        class="flex-1 bg-pink-600 hover:bg-pink-500 text-white text-xs font-medium py-2.5 px-3 rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <span>ลองกดดูหน้าเว็บ</span>
+                                </button>
+                                <a href="https://phakhamon99.github.io/our-team/" target="_blank" rel="noopener noreferrer" 
+                                   class="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition-colors" title="เปิดในแท็บใหม่">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 4: BMI Calculator -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300 flex flex-col group" data-category="tool">
+                    <div class="relative h-48 bg-gradient-to-br from-emerald-900 via-slate-800 to-teal-900 overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all"></div>
+                        <i class="fa-solid fa-calculator text-6xl text-emerald-400/70 group-hover:scale-110 transition-transform duration-300"></i>
+                        <span class="absolute top-3 left-3 bg-emerald-500/80 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md">
+                            Health Tool
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                                BMI Calculator Web Tool
+                            </h3>
+                            <p class="text-slate-400 text-sm mt-2 line-clamp-3 leading-relaxed">
+                                เว็บแอปพลิเคชันคำนวณดัชนีมวลกาย (BMI) แบบโต้ตอบทันที พร้อมประเมินเกณฑ์สุขภาพและให้คำแนะนำเบื้องต้นอย่างแม่นยำ
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300 border border-slate-700">JavaScript</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300 border border-slate-700">Calculator</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-300 border border-slate-700">GitHub Pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="openPreviewModal('BMI Calculator Web Tool', 'https://phakhamon99.github.io/bmiiii/')" 
+                                        class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium py-2.5 px-3 rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-eye"></i>
+                                    <span>ลองกดใช้งานแอป</span>
+                                </button>
+                                <a href="https://phakhamon99.github.io/bmiiii/" target="_blank" rel="noopener noreferrer" 
+                                   class="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition-colors" title="เปิดในแท็บใหม่">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 5: Interactive Game -->
+                <div class="project-card glass-card rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all duration-300 flex flex-col group" data-category="game">
+                    <div class="relative h-48 bg-gradient-to-br from-amber-900 via-slate-800 to-orange-900 overflow-hidden flex items-center justify-center p-6">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all"></div>
+                        <i class="fa-solid fa-gamepad text-6xl text-amber-400/70 group-hover:scale-110 transition-transform duration-300"></i>
+                        <span class="absolute top-3 left-3 bg-amber-500/80 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md">
+                            Mini Game
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
+                                Interactive Web Game
+                            </h3>
+                            <p class="text-slate-400 text-sm mt-2 line-clamp-3 leading-relaxed">
+                                มินิเกมบนเว็บสุดตื่นเต้น พัฒนาด้วย JavaScript เพื่อความสนุกสนาน ฝึกการตัดสินใจ และเล่นผ่อนคลายความเครียดผ่านเบราว์เซอร์
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col gap-3">
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700">JavaScript Game</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700">Interactive</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-amber-300 border border-slate-700">GitHub Pages</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="openPreviewModal('Interactive Web Game', 'https://phakhamon99.github.io/game/')" 
+                                        class="flex-1 bg-amber-600 hover:bg-amber-500 text-white text-xs font-medium py-2.5 px-3 rounded-lg transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-gamepad"></i>
+                                    <span>ลองกดเล่นเกมนี้</span>
+                                </button>
+                                <a href="https://phakhamon99.github.io/game/" target="_blank" rel="noopener noreferrer" 
+                                   class="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition-colors" title="เปิดในแท็บใหม่">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Skills Section -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- About Description -->
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">About Developer</h2>
+                    <h3 class="text-3xl font-bold text-white mb-6">เกี่ยวกับ ภคมน พรมดี</h3>
+                    <p class="text-slate-300 leading-relaxed font-light mb-6">
+                        ฉัน มีความสนใจอย่างยิ่งในการพัฒนาเว็บไซต์และการออกแบบประสบการณ์ผู้ใช้งาน (UX/UI) ชอบการเรียนรู้และนำเทคโนโลยีใหม่ๆ มาใช้สร้างสรรค์โปรเจกต์ที่ตอบโจทย์ทั้งการใช้งานและความสวยงาม
+                    </p>
+                    <p class="text-slate-400 leading-relaxed text-sm mb-8">
+                        ผลงานทั้งหมดได้รับการโฮสต์ไว้บน GitHub Pages ซึ่งแสดงถึงความคุ้นเคยกับการจัดการเวอร์ชันโค้ด (Git & GitHub) รวมถึงความเข้าใจในพื้นฐาน HTML5, CSS3, JavaScript และการสร้าง Responsive Web Design
+                    </p>
+
+                    <!-- Feature Highlights -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 flex items-start gap-3">
+                            <div class="text-indigo-400 text-lg mt-0.5"><i class="fa-solid fa-laptop-code"></i></div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Web Development</h4>
+                                <p class="text-xs text-slate-400 mt-1">โครงสร้างเว็บสะอาด ทำงานรวดเร็ว</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 flex items-start gap-3">
+                            <div class="text-purple-400 text-lg mt-0.5"><i class="fa-solid fa-mobile-screen"></i></div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-white">Responsive Design</h4>
+                                <p class="text-xs text-slate-400 mt-1">แสดงผลสวยงามบนทุกอุปกรณ์</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Chart & Badges -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6 border border-slate-700/60">
+                    <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-code text-indigo-400"></i>
+                        <span>ทักษะและความสามารถ (Skills)</span>
+                    </h4>
+
+                    <!-- Skill Bars -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-300 mb-1">
+                                <span>HTML5 / Structure</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-300 mb-1">
+                                <span>CSS3 / Tailwind CSS / Styling</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-300 mb-1">
+                                <span>JavaScript / Interactive Logic</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-medium text-slate-300 mb-1">
+                                <span>Git & GitHub Publishing</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-700/60 flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">#GitHubPages</span>
+                        <span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">#WebApps</span>
+                        <span class="text-xs px-3 py-1 rounded-full bg-pink-500/10 text-pink-300 border border-pink-500/20">#MiniGames</span>
+                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">#BMICalculator</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative bg-slate-900/80 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-2">Get In Touch</h2>
+            <h3 class="text-3xl font-bold text-white mb-4">ช่องทางการติดต่อ</h3>
+            <p class="text-slate-400 text-sm max-w-xl mx-auto mb-10">
+                หากต้องการสอบถามข้อมูลเพิ่มเติมเกี่ยวกับผลงานหรือติดต่องาน สามารถติดต่อผ่าน GitHub หรือช่องทางด้านล่างได้ครับ
+            </p>
+
+            <div class="inline-flex flex-wrap items-center justify-center gap-4">
+                <a href="https://github.com/phakhamon99" target="_blank" rel="noopener noreferrer" 
+                   class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium border border-slate-700 transition-all flex items-center gap-3">
+                    <i class="fa-brands fa-github text-xl"></i>
+                    <span>GitHub: phakhamon99</span>
+                </a>
+                <button onclick="copyToClipboard('phakhamon99')" id="copyBtn" 
+                        class="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-all flex items-center gap-2">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>คัดลอกชื่อผู้ใช้</span>
+                </button>
+            </div>
+
+            <div id="toastMessage" class="hidden mt-4 inline-block px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium">
+                <i class="fa-solid fa-check mr-1"></i> คัดลอกเรียบร้อยแล้ว!
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800 bg-slate-950 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                © 2026 <span class="text-slate-300 font-medium">ภคมน พรมดี</span> - Portfolio. All rights reserved.
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://phakhamon99.github.io/openhouse/" target="_blank" class="hover:text-slate-300">Openhouse</a>
+                <a href="https://phakhamon99.github.io/my-favorite-websites/" target="_blank" class="hover:text-slate-300">Favorites</a>
+                <a href="https://phakhamon99.github.io/our-team/" target="_blank" class="hover:text-slate-300">Team</a>
+                <a href="https://phakhamon99.github.io/bmiiii/" target="_blank" class="hover:text-slate-300">BMI</a>
+                <a href="https://phakhamon99.github.io/game/" target="_blank" class="hover:text-slate-300">Game</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Live Preview Modal -->
+    <div id="previewModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 md:p-6">
+        <div class="bg-slate-900 border border-slate-700/80 rounded-2xl w-full max-w-6xl h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+            
+            <!-- Modal Header Toolbar -->
+            <div class="bg-slate-800/90 px-4 py-3 border-b border-slate-700 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3 overflow-hidden">
+                    <div class="flex items-center gap-1.5 hidden sm:flex">
+                        <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    </div>
+                    <h3 id="modalTitle" class="text-sm sm:text-base font-semibold text-white truncate">
+                        ตัวอย่างเว็บไซต์
+                    </h3>
+                </div>
+
+                <!-- View Mode Switcher + Controls -->
+                <div class="flex items-center gap-2">
+                    <!-- Responsive View Mode Switcher -->
+                    <div class="bg-slate-900 p-1 rounded-lg border border-slate-700 flex items-center gap-1 text-xs">
+                        <button onclick="setModalFrameWidth('100%')" id="desktopViewBtn" class="px-2.5 py-1 rounded text-white bg-indigo-600 transition-colors" title="มุมมองเดสก์ท็อป">
+                            <i class="fa-solid fa-desktop mr-1"></i> Desktop
+                        </button>
+                        <button onclick="setModalFrameWidth('400px')" id="mobileViewBtn" class="px-2.5 py-1 rounded text-slate-400 hover:text-white transition-colors" title="มุมมองมือถือ">
+                            <i class="fa-solid fa-mobile-screen-button mr-1"></i> Mobile
+                        </button>
+                    </div>
+
+                    <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer" 
+                       class="p-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-xs transition-colors" title="เปิดลิงก์จริงในแท็บใหม่">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+
+                    <button onclick="closePreviewModal()" class="p-2 bg-rose-600/80 hover:bg-rose-600 text-white rounded-lg text-xs transition-colors ml-1" title="ปิดหน้าต่าง">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Frame Container -->
+            <div class="flex-1 bg-slate-950 relative flex items-center justify-center overflow-hidden p-2">
+                <div id="modalFrameWrapper" class="w-full h-full transition-all duration-300 rounded-lg overflow-hidden bg-white shadow-lg">
+                    <iframe id="modalIframe" src="" class="w-full h-full border-0" title="Web Preview"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Client Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Filter Projects by category
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'active');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+
+            event.currentTarget.classList.remove('bg-slate-800', 'text-slate-300');
+            event.currentTarget.classList.add('bg-indigo-600', 'text-white', 'active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Live Preview Modal Functions
+        const previewModal = document.getElementById('previewModal');
+        const modalIframe = document.getElementById('modalIframe');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalExternalLink = document.getElementById('modalExternalLink');
+        const modalFrameWrapper = document.getElementById('modalFrameWrapper');
+        const desktopViewBtn = document.getElementById('desktopViewBtn');
+        const mobileViewBtn = document.getElementById('mobileViewBtn');
+
+        function openPreviewModal(title, url) {
+            modalTitle.textContent = title;
+            modalIframe.src = url;
+            modalExternalLink.href = url;
+            previewModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setModalFrameWidth('100%');
+        }
+
+        function closePreviewModal() {
+            previewModal.classList.add('hidden');
+            modalIframe.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function setModalFrameWidth(width) {
+            modalFrameWrapper.style.width = width;
+            if (width === '100%') {
+                desktopViewBtn.classList.add('bg-indigo-600', 'text-white');
+                desktopViewBtn.classList.remove('text-slate-400');
+                mobileViewBtn.classList.remove('bg-indigo-600', 'text-white');
+                mobileViewBtn.classList.add('text-slate-400');
+            } else {
+                mobileViewBtn.classList.add('bg-indigo-600', 'text-white');
+                mobileViewBtn.classList.remove('text-slate-400');
+                desktopViewBtn.classList.remove('bg-indigo-600', 'text-white');
+                desktopViewBtn.classList.add('text-slate-400');
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !previewModal.classList.contains('hidden')) {
+                closePreviewModal();
+            }
+        });
+
+        // Copy text to clipboard fallback
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('toastMessage');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
